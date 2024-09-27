@@ -7,13 +7,14 @@ const Clienti = () => {
   const [hasError, setError] = useState(false);
   const [page, setPage] = useState(0);
   const [last, setLast] = useState(false);
+  const [sortBy, setSortBy] = useState("ragioneSociale");
   const [clienti, setClienti] = useState([]);
 
   const { token } = useParams();
 
   const fetchClienti = async () => {
     try {
-      const resp = await fetch("http://localhost:3001/clienti" + "?page=" + page, {
+      const resp = await fetch("http://localhost:3001/clienti" + "?page=" + page + "&sortBy=" + sortBy, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -30,11 +31,43 @@ const Clienti = () => {
   };
   useEffect(() => {
     fetchClienti();
-  }, [page]);
+  }, [page, sortBy]);
 
   return (
     <>
-      <h1 className="mt-5">Clienti</h1>
+      <h1 className="mt-3">Clienti</h1>
+      <h3>Ordina per:</h3>
+      <Button
+        className="me-3"
+        active={sortBy === "ragioneSociale" ? true : false}
+        onClick={() => setSortBy("ragioneSociale")}
+      >
+        Ragione Sociale
+      </Button>
+      <Button
+        className="me-3"
+        active={sortBy === "fatturatoAnnuale" ? true : false}
+        onClick={() => setSortBy("fatturatoAnnuale")}
+      >
+        Fatturato Annuale
+      </Button>
+      <Button
+        className="me-3"
+        active={sortBy === "dataInserimento" ? true : false}
+        onClick={() => setSortBy("dataInserimento")}
+      >
+        Data Inserimento
+      </Button>
+      <Button
+        className="me-3"
+        active={sortBy === "dataUltimoContatto" ? true : false}
+        onClick={() => setSortBy("dataUltimoContatto")}
+      >
+        Data Ultimo Contatto
+      </Button>
+      <Button className="me-3" active={sortBy === "provincia" ? true : false} onClick={() => setSortBy("provincia")}>
+        Provincia
+      </Button>
       {clienti.map(cliente => (
         <ClienteCard
           key={cliente.id}
