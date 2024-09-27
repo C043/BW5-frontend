@@ -38,34 +38,38 @@ const Clienti = () => {
       <h1 className="mt-3">Clienti</h1>
       <h3>Ordina per:</h3>
       <Button
-        className="me-3"
+        className="me-3 mb-2"
         active={sortBy === "ragioneSociale" ? true : false}
         onClick={() => setSortBy("ragioneSociale")}
       >
         Ragione Sociale
       </Button>
       <Button
-        className="me-3"
+        className="me-3 mb-2"
         active={sortBy === "fatturatoAnnuale" ? true : false}
         onClick={() => setSortBy("fatturatoAnnuale")}
       >
         Fatturato Annuale
       </Button>
       <Button
-        className="me-3"
+        className="me-3 mb-2"
         active={sortBy === "dataInserimento" ? true : false}
         onClick={() => setSortBy("dataInserimento")}
       >
         Data Inserimento
       </Button>
       <Button
-        className="me-3"
+        className="me-3 mb-2"
         active={sortBy === "dataUltimoContatto" ? true : false}
         onClick={() => setSortBy("dataUltimoContatto")}
       >
         Data Ultimo Contatto
       </Button>
-      <Button className="me-3" active={sortBy === "provincia" ? true : false} onClick={() => setSortBy("provincia")}>
+      <Button
+        className="me-3 mb-2"
+        active={sortBy === "provincia" ? true : false}
+        onClick={() => setSortBy("provincia")}
+      >
         Provincia
       </Button>
       {clienti.map(cliente => (
@@ -76,6 +80,7 @@ const Clienti = () => {
           partitaIva={cliente.partitaIva}
           fatturatoAnnuale={cliente.fatturatoAnnuale}
           provincia={cliente.provincia}
+          logo={cliente.logoAziendale}
         />
       ))}
       {page === 0 ? (

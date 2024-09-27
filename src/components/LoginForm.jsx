@@ -41,6 +41,7 @@ const LoginForm = () => {
             placeholder="Enter email"
             value={email}
             onChange={ev => setEmail(ev.target.value)}
+            required
           />
           <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
         </Form.Group>
@@ -52,6 +53,7 @@ const LoginForm = () => {
             placeholder="Password"
             value={password}
             onChange={ev => setPassword(ev.target.value)}
+            required
           />
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>

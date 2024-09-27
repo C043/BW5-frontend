@@ -1,7 +1,10 @@
-const ClienteCard = ({ ragioneSociale, partitaIva, email, fatturatoAnnuale, provincia }) => {
+const ClienteCard = ({ ragioneSociale, partitaIva, email, fatturatoAnnuale, provincia, logo }) => {
   return (
     <div className="my-5">
-      <p className="h3">Ragione Sociale: {ragioneSociale}</p>
+      <div className="d-flex align-items-center mb-2">
+        <img src={logo} alt="logo-aziendale" className="me-2 rounded-circle" />
+        <p className="h3 mb-0">{ragioneSociale}</p>
+      </div>
       <p>Partita IVA: {partitaIva}</p>
       <p>Email: {email}</p>
       <p>Fatturato Annuale: {fatturatoAnnuale}$</p>

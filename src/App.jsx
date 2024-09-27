@@ -8,6 +8,7 @@ import Clienti from "./pages/Clienti";
 function App() {
   return (
     <Container>
+      <h1 className="mt-3">Bolt - Società Energetica</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
