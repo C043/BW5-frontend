@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 
 
 const RegisterForm = () => {
 
+    const navigation = useNavigate();
 
     const [username, setUsername] = useState('');
     const [nome, setNome] = useState('');
@@ -37,12 +39,38 @@ const RegisterForm = () => {
             const data = await response.json();
             console.log("risposta dal server: ", data);
             console.log("dati inviati: ", dataForm);
+            fetchPostLogin();
         } catch (error) {
             console.log("errore: ", error);
         }
     }
 
+    const fetchPostLogin = async (email, password) => {
 
+        try {
+            const resp = await fetch("http://localhost:3001/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                }),
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                console.log("DATI DI RISPOSTA DAL LOGIN, DOPO IL REGISTER", data);
+                alert("successo");
+                navigation("/clienti/", data)
+            } else {
+                throw new Error()
+            };
+
+        } catch (error) {
+            console.log("errore: ", error)
+        }
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
