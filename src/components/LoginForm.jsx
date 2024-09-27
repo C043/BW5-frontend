@@ -1,9 +1,35 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const location = useLocation();
+  const navigation = useNavigate();
+  const params = useParams();
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      const resp = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      if (resp.ok) {
+        alert("successo");
+      } else throw new Error();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Form>
@@ -22,7 +48,7 @@ const LoginForm = () => {
           onChange={ev => setPassword(ev.target.value)}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={handleSubmit}>
         Submit
       </Button>
     </Form>
