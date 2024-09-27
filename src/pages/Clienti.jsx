@@ -75,6 +75,7 @@ const Clienti = () => {
           email={cliente.email}
           partitaIva={cliente.partitaIva}
           fatturatoAnnuale={cliente.fatturatoAnnuale}
+          provincia={cliente.provincia}
         />
       ))}
       {page === 0 ? (
