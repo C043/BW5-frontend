@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
 import { Container } from "react-bootstrap";
 import Clienti from "./pages/Clienti";
+import RegisterForm from "./components/RegisterForm";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/register" element={<RegisterForm />} />
           <Route path="/clienti/:token" element={<Clienti />} />
         </Routes>
       </BrowserRouter>
