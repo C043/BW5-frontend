@@ -39,7 +39,7 @@ const RegisterForm = () => {
             const data = await response.json();
             console.log("risposta dal server: ", data);
             console.log("dati inviati: ", dataForm);
-            fetchPostLogin();
+            await fetchPostLogin(dataForm.email, dataForm.password);
         } catch (error) {
             console.log("errore: ", error);
         }
@@ -62,7 +62,7 @@ const RegisterForm = () => {
                 const data = await resp.json();
                 console.log("DATI DI RISPOSTA DAL LOGIN, DOPO IL REGISTER", data);
                 alert("successo");
-                navigation("/clienti/", data)
+                navigation(`/clienti/${data.token}`)
             } else {
                 throw new Error()
             };
